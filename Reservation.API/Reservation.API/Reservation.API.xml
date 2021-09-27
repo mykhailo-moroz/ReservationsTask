@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Reservation.API</name>
+    </assembly>
+    <members>
+        <member name="T:Reservation.API.Controllers.ReservationsController">
+            <summary>
+            Reservations controller
+            </summary>
+        </member>
+        <member name="M:Reservation.API.Controllers.ReservationsController.Get">
+            <summary>
+            Provide a list of all reservations. ReservationModel must have a Date and client name.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Reservation.API.Controllers.ReservationsController.Post(Reservation.API.Models.ReservationModel)">
+            <summary>
+            Try to create a new reservationModel. Input DTO must have the Date and client name.
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
