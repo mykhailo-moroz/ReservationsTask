@@ -33,10 +33,19 @@ namespace Reservation.API
             services.AddTransient<IReservationRepository, ReservationRepository>();
             services.AddTransient<IReservationService, ReservationService>();
 
+            services.AddCors(options => {
+                options.AddPolicy(name: "FrontendUI",
+                    policy =>
+                    {
+                        policy.WithOrigins("http://localhost:4200")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                    });
+            });
+
             services.AddControllers();
 
-            services.AddMvc()
-                .AddFluentValidation();
+            services.AddFluentValidationAutoValidation();
             services.AddTransient<IValidator<ReservationModel>, ReservationValidator>();
 
             services.AddSwaggerGen();
@@ -56,8 +65,11 @@ namespace Reservation.API
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Reservations API V1");
             });
-            app.UseHttpsRedirection();
+            app.UseCors("FrontendUI");
+
+            app.UseStaticFiles();
             app.UseRouting();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

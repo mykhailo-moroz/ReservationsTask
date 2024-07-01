@@ -7,13 +7,14 @@ using Microsoft.Extensions.Logging;
 using Reservation.API.Exceptions;
 using Reservation.API.Models;
 using Reservation.API.Services;
+using Microsoft.AspNetCore.Cors;
 
 namespace Reservation.API.Controllers
 {
     /// <summary>
     /// Reservations controller
     /// </summary>
-    [Route("api/[controller]")]
+    [Route("api/reservation")]
     [ApiController]
     public class ReservationsController : ControllerBase
     {
@@ -33,7 +34,6 @@ namespace Reservation.API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("reservations")]
         public async Task<IActionResult> Get()
         {
             try
@@ -55,7 +55,6 @@ namespace Reservation.API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        [Route("reservations")]
         public async Task<IActionResult> Post([FromBody] ReservationModel reservationModel)
         {
             if (!ModelState.IsValid)
